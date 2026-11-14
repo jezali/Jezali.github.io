@@ -1,0 +1,48 @@
+[package]
+name = "jezali-portfolio"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+web-sys = { version = "0.3", features = [
+    "Window",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "HtmlCanvasElement",
+    "CanvasRenderingContext2d",
+    "HtmlInputElement",
+    "Storage",
+    "Response",
+    "Request",
+    "RequestInit",
+    "RequestMode",
+    "Headers",
+    "KeyboardEvent",
+    "MouseEvent",
+    "EventTarget",
+    "CustomEvent",
+    "IntersectionObserver",
+    "IntersectionObserverEntry",
+    "DomRectReadOnly",
+    "Location",
+    "Navigator",
+    "Clipboard",
+    "MediaQueryList",
+    "NodeList",
+] }
+serde = { version = "1.0", default-features = false, features = ["derive", "alloc"] }
+serde-wasm-bindgen = "0.6"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = "debuginfo"
